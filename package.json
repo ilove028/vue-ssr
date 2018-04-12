@@ -1,0 +1,21 @@
+{
+  "name": "vue-ssr",
+  "version": "1.0.0",
+  "description": "Vue server side render demo project, inspired by https://github.com/vuejs/vue-hackernews-2.0/",
+  "main": "index.js",
+  "scripts": {
+    "eslint": "eslint client/** app/**",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Vue",
+    "ssr"
+  ],
+  "author": "mx",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.5.0",
+    "vue": "^2.5.16",
+    "vue-server-renderer": "^2.5.16"
+  }
+}
