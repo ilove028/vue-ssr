@@ -5,6 +5,8 @@ export default context => {
     return new Promise((resolve, reject) => {
         const { app, router, store } = createApp();
 
+        console.info(context);
+
         router.push(context.url);
 
         router.onReady(() => {

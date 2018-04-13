@@ -1,7 +1,5 @@
 /* global __dirname */
 const path = require('path');
-const { VueLoaderPlugin } = require('vue-loader');
-const ExtractTextPlugin = require('webpack-node-externals');
 
 module.exports = {
     output: {
@@ -25,9 +23,5 @@ module.exports = {
         }]
     },
     plugins: [
-        new VueLoaderPlugin(),
-        new ExtractTextPlugin({
-            filename: 'common.[chunkhash].css'
-        })
     ]
 };

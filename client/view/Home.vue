@@ -1,5 +1,10 @@
 <template>
-  <div>Home Page.</div>
+  <div>
+    <h1>Hello World.</span>
+    <ul>
+      <li v-for="item of items" v-text="item.name"></li>
+    </ul>
+  </div>
 </template>
 <script>
 export default {
@@ -8,6 +13,7 @@ export default {
   },
   computed: {
       items(){
+          console.info('Home compute item invoked.');
           return this.$store.state.items;
       }
   }
