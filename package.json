@@ -4,8 +4,9 @@
   "description": "Vue server side render demo project, inspired by https://github.com/vuejs/vue-hackernews-2.0/",
   "main": "index.js",
   "scripts": {
-    "eslint": "eslint client/** app/**",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "eslint": "eslint client/** app/** build/**",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:client": "cross-env NODE_ENV=production webpack --config build/webpack.client.config.js"
   },
   "keywords": [
     "Vue",
@@ -21,5 +22,13 @@
     "vue-server-renderer": "^2.5.16",
     "vuex": "^3.0.1",
     "vuex-router-sync": "^5.0.0"
+  },
+  "devDependencies": {
+    "cross-env": "^5.1.4",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "vue-loader": "^14.2.2",
+    "webpack": "^3.8.1",
+    "webpack-merge": "^4.1.2",
+    "webpack-node-externals": "^1.6.0"
   }
 }
