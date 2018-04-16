@@ -12,12 +12,12 @@ export default {
     //     return store.dispatch('check', { token: context.token });
     // },
     asyncData({ store, route }){
-        console.info('Admin asyncDate create invoked.');
+        // console.info('Admin asyncDate create invoked.');
         store.registerModule('info', infoModule);
         return store.dispatch('info/queryInfo', { id: route.params.id });
     },
     beforeCreate(){
-        console.info('Admin before create invoked.');
+        // console.info('Admin before create invoked.');
     },
     destroyed () {
         this.$store.unregisterModule('info');
@@ -27,6 +27,6 @@ export default {
             return this.$store.state.info.info;
         }
     }
-}
+};
 </script>
 

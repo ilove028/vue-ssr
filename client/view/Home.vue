@@ -6,20 +6,20 @@
     <router-link to="/admin/b">B</router-link>
     <router-link to="/admin/c">C</router-link>
     <ul>
-      <li v-for="item of items" v-text="item.name"></li>
+      <li v-for="item of items" v-text="item.name" :key="item.name"></li>
     </ul>
-  </div>
+</div>
 </template>
 <script>
-export default {
-  asyncData({ store, route }){
-      return store.dispatch('queryItems');
-  },
-  computed: {
-      items(){
-          console.info('Home compute item invoked.');
-          return this.$store.state.items;
-      }
-  }
-}
+  export default {
+    asyncData({ store }){
+        return store.dispatch('queryItems');
+    },
+    computed: {
+        items(){
+            // console.info('Home compute item invoked.');
+            return this.$store.state.items;
+        }
+    }
+  };
 </script>

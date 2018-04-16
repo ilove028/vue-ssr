@@ -1,11 +1,25 @@
 /* global __dirname */
 const path = require('path');
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const isProduction = process.env.NODE_ENV === 'production';
+
+const plugins = [
+    new ExtractTextPlugin({ filename: 'css/style.[chunkhash:6].css' })
+];
+
+if(isProduction){
+    plugins.push(new webpack.optimize.UglifyJsPlugin({
+        compress: { warnings: false, comments: true }
+    }));
+}
 
 module.exports = {
     output: {
         path: path.join(__dirname, '../dist'),
         publicPath: '/',
-        filename: '[name].[chunkhash].js'
+        filename: '[name].[chunkhash:6].js'
     },
     module: {
         rules: [{
@@ -14,7 +28,12 @@ module.exports = {
             options: {
                 compilerOptions: {
                     preserveWhitespace: false
-                }
+                },
+                cssModules: {
+                    localIdentName: '[local]-[hash:base64:5]',
+                    camelCase: true
+                },
+                extractCSS: true
             }
         },{
             test: /\.js$/,
@@ -23,5 +42,11 @@ module.exports = {
         }]
     },
     plugins: [
-    ]
+        new ExtractTextPlugin({ filename: 'css/style.[chunkhash:6].css' })
+    ],
+    resolve: {
+        alias: {
+            '@edition': process.env.EDITION ? path.join(__dirname, '../client/' + process.env.EDITION) : path.join(__dirname, '../client/base') 
+        }
+    }
 };

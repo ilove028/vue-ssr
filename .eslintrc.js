@@ -1,16 +1,17 @@
 module.exports = {
     "env": {
         "browser": true,
+        "node": true,
         "commonjs": true,
         "es6": true
     },
-    "extends": "eslint:recommended",
+    "extends": ["eslint:recommended", "plugin:vue/essential"],
     "parserOptions": {
         "sourceType": "module"
     },
     "rules": {
         "indent": [
-            "error",
+            "warn",
             4
         ],
         "linebreak-style": [

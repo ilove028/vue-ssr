@@ -1,0 +1,10 @@
+@import './variable.scss';
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    font-size: $base-font-size;
+}

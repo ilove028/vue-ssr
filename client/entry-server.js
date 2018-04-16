@@ -10,7 +10,7 @@ export default context => {
         router.push(
             context.url, 
             () => {
-                console.info('router complete')
+                // console.info('router complete')
             }, (arg) => {
                 if(arg instanceof Error){
                     reject({ code: parseInt(arg.message) });
@@ -42,10 +42,10 @@ export default context => {
         });
 
         router.onError(err => {
-            console.info(`router error handler.`);
+            // console.info(`router error handler.`);
 
             reject(err);
-        })
+        });
 
     });
 };
