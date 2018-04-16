@@ -1,4 +1,5 @@
 const { createBundleRenderer } = require('vue-server-renderer');
+const fs = require('fs');
 
 module.exports = (app, options = {}) => {
 
@@ -21,21 +22,30 @@ module.exports = (app, options = {}) => {
     }else{
         const template = fs.readFileSync(options.templatePath, 'utf-8');
         const bundle = require(options.serverBundle);
-        const clientManifest = require(options.manifest);
+        const clientManifest = require(options.clientManifest);
 
         renderer = createRenderer(bundle, { template, clientManifest });
     }
 
-    const render = (context, next) => {
+    const render = async (context, next) => {
         const start = +new Date();
-
-
 
         context.set('Content-Type', 'text/html');
         context.set('Server', 'Koa2');
+
+        context.body = await renderer.renderToString({ 
+            url: context.url, 
+            titel: 'Vue SSR' ,
+            meta: `
+                <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+            `
+        });
     };
 
     return async (context, next) => {
-        
+        if(options.hotReload){
+            await readyPromise;
+        }
+        await render(context, next);
     };
 };

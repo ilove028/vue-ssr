@@ -6,6 +6,7 @@
   "scripts": {
     "eslint": "eslint client/** app/** build/**",
     "start": "node app/server.js",
+    "dev": "cross-env NODE_ENV=development --inspect-brk=1314 node app/server.js",
     "debug": "node --inspect-brk=1314 app/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:client": "cross-env NODE_ENV=production webpack --config build/webpack.client.config.js",
@@ -21,6 +22,7 @@
     "axios": "^0.18.0",
     "koa": "^2.5.0",
     "koa-static": "^4.0.2",
+    "memory-fs": "^0.4.1",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1",
     "vue-server-renderer": "^2.5.16",
