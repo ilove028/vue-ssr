@@ -14,7 +14,7 @@ const renderer = createBundleRenderer(serverBundle, {
 
 app.use(koaStatic(path.join(__dirname, '../dist')));
 
-app.use(async context => {
+app.use(async (context, next) => {
     try{
         context.body = await renderer.renderToString({ 
             url: context.url, 
@@ -24,8 +24,16 @@ app.use(async context => {
             `
         });
     }catch(e){
-        context.body = e;
+        if(399 < e.code && 404 !== e.code){
+            context.throw(e.code);
+        }else{
+            await next();
+        }
     }
 });
 
-app.listen(8080);
+app.on('error', err => {
+    console.error(err);
+});
+
+app.listen(8081);
