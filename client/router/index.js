@@ -7,9 +7,9 @@ export default (context) => {
     const router = new Router({
         mode: 'history',
         routes: [
-            { path: '/', component: () => import('../view/Home.vue') },
-            { path: '/about', component: () => import('../view/About.vue') },
-            { path: '/admin/:id', component: () => import('../view/Admin.vue'), meta: { requiresAuth: true } }
+            { path: '/', component: () => import(/* webpackChunkName: "home" */'../view/Home.vue') },
+            { path: '/about', component: () => import(/* webpackChunkName: "about" */'../view/About.vue') },
+            { path: '/admin/:id', component: () => import(/* webpackChunkName: "admin" */'../view/Admin.vue'), meta: { requiresAuth: true } }
         ]
     });
 

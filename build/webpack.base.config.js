@@ -11,7 +11,7 @@ const plugins = [
 
 if(isProduction){
     plugins.push(new webpack.optimize.UglifyJsPlugin({
-        compress: { warnings: false, comments: true }
+        compress: { warnings: false, drop_console: true }
     }));
 }
 
@@ -19,6 +19,7 @@ module.exports = {
     output: {
         path: path.join(__dirname, '../dist'),
         publicPath: '/',
+        chunkFilename: '[name].[chunkhash:6].js',
         filename: '[name].[chunkhash:6].js'
     },
     module: {
@@ -41,9 +42,7 @@ module.exports = {
             exclude: /node_modules/
         }]
     },
-    plugins: [
-        new ExtractTextPlugin({ filename: 'css/style.[chunkhash:6].css' })
-    ],
+    plugins,
     resolve: {
         alias: {
             '@edition': process.env.EDITION ? path.join(__dirname, '../client/' + process.env.EDITION) : path.join(__dirname, '../client/base') 
